@@ -45,12 +45,26 @@ GAN-Generative Adversarial Network, was praised by "the Father of Convolutional 
 * [Photo2Cartoon](./docs/en_US/tutorials/photo2cartoon.md)
 * [Wav2Lip](./docs/en_US/tutorials/wav2lip.md)
 * [Super_Resolution](./docs/en_US/tutorials/super_resolution.md)
+* [StyleGAN2](./docs/en_US/tutorials/styleganv2.md)
+* [Pixel2Style2Pixel](./docs/en_US/tutorials/pixel2style2pixel.md)
+
 
 ## Composite Application
 
-* [Video restore](./docs/zh_CN/tutorials/video_restore.md)
+* [Video restore](./docs/en_US/tutorials/video_restore.md)
+
+## Online Tutorial
+
+You can run those projects in the [AI Studio](https://aistudio.baidu.com/aistudio/projectoverview/public/1?kw=paddlegan) to learn how to use the models above:
+
+|Online Tutorial      |    link  |
+|--------------|-----------|
+|Motion Driving-multi-personal "Mai-ha-hi" | [Click and Try](https://aistudio.baidu.com/aistudio/projectdetail/1603391) |
+|Restore the video of Beijing hundreds years ago|[Click and Try](https://aistudio.baidu.com/aistudio/projectdetail/1161285)|
+|Motion Driving-When "Su Daqiang" sings "unravel" |[Click and Try](https://aistudio.baidu.com/aistudio/projectdetail/1048840)|
 
 ## Examples
+
 
 ### Image Translation
 
