@@ -182,6 +182,10 @@ class FirstOrderModel(BaseModel):
                 loss = paddle.abs(out['prediction'] -
                                   driving).mean().cpu().numpy()
                 loss_list.append(loss)
+                if metrics is not None:
+                    for metric in metrics.values():
+                        metric.update(out['prediction'], driving)
+                break
         print("Reconstruction loss: %s" % np.mean(loss_list))
         self.nets['kp_detector'].train()
         self.nets['generator'].train()
@@ -239,34 +243,36 @@ class Visualizer:
         kp_source = out['kp_source']['value'].cpu().numpy()
         source = np.transpose(source, [0, 2, 3, 1])
         images.append((source, kp_source))
-
+        """
         # Equivariance visualization
         if 'transformed_frame' in out:
             transformed = out['transformed_frame'].cpu().numpy()
             transformed = np.transpose(transformed, [0, 2, 3, 1])
             transformed_kp = out['transformed_kp']['value'].cpu().numpy()
             images.append((transformed, transformed_kp))
-
+        """
         # Driving image with keypoints
         kp_driving = out['kp_driving']['value'].cpu().numpy()
         driving = driving.cpu().numpy()
         driving = np.transpose(driving, [0, 2, 3, 1])
         images.append((driving, kp_driving))
-
+        """
         # Deformed image
         if 'deformed' in out:
             deformed = out['deformed'].cpu().numpy()
             deformed = np.transpose(deformed, [0, 2, 3, 1])
             images.append(deformed)
-
+        """
         # Result with and without keypoints
         prediction = out['prediction'].cpu().numpy()
         prediction = np.transpose(prediction, [0, 2, 3, 1])
+        """
         if 'kp_norm' in out:
             kp_norm = out['kp_norm']['value'].cpu().numpy()
             images.append((prediction, kp_norm))
+        """
         images.append(prediction)
-
+        """
         ## Occlusion map
         if 'occlusion_map' in out:
             occlusion_map = out['occlusion_map'].cpu().tile([1, 3, 1, 1])
@@ -305,7 +311,7 @@ class Visualizer:
                 full_mask.append(mask * color)
 
             images.append(sum(full_mask))
-
+        """
         image = self.create_image_grid(*images)
         image = (255 * image).astype(np.uint8)
         return image
